@@ -35,3 +35,19 @@ TDD helps identify problems early and encourages smaller, more focused implement
 However, passing tests does not automatically guarantee that the application is correct.
 
 The tests must be carefully designed, and the implementation must still be reviewed and understood by the developer.
+
+## 6. Test Naming Convention
+
+Test methods will follow the action and expected result naming convention.
+
+The method name should clearly describe what the application does and what the test expects to happen.
+
+Examples:
+
+- `createEmployeeStoresTheFirstName()`
+- `searchEmployeeWhenNameExistsReturnsEmployee()`
+- `addEmployeeWhenDepartmentDoesNotExistThrowsException()`
+
+This naming convention makes tests easier to understand and helps identify the purpose of each test without reading its implementation.
+
+Test names will use camelCase, starting with a lowercase letter.
