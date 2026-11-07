@@ -27,3 +27,15 @@ The project will be developed incrementally.
 
 Each feature will be implemented, tested, and documented
 before moving to the next stage.
+
+## Employee Name Representation
+
+The Employee class stores the first name and last name separately.
+
+This decision makes the employee's information easier to manage and allows the application to use the full name when displaying, searching, and sorting employees.
+
+The `getFullName()` method combines the first name and last name, separated by a space.
+
+For sorting, the application will use the full name in alphabetical order, starting with the first name and using the last name to break ties.
+
+This rule provides consistent results when two employees have the same first name.
