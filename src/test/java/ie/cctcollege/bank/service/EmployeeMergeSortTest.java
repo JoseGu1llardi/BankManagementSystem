@@ -1,7 +1,8 @@
-package ie.cctcollege.bank.model.service;
+package ie.cctcollege.bank.service;
 
+import ie.cctcollege.bank.model.Department;
 import ie.cctcollege.bank.model.Employee;
-import ie.cctcollege.bank.service.EmployeeMergeSort;
+import ie.cctcollege.bank.model.ManagerType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,9 +20,9 @@ public class EmployeeMergeSortTest {
 
     private List<Employee> createListWithThreeEmployees() {
         return List.of(
-                new Employee("Charlie", "Brown"),
-                new Employee("Alice", "Smith"),
-                new Employee("Bob", "Jones")
+                new Employee("Charlie", "Brown", Department.FINANCE, ManagerType.SENIOR_MANAGER),
+                new Employee("Alice", "Smith", Department.HUMAN_RESOURCES, ManagerType.ASSISTANT_MANAGER),
+                new Employee("Bob", "Jones", Department.IT, ManagerType.TEAM_LEAD)
         );
     }
 
@@ -41,13 +42,13 @@ public class EmployeeMergeSortTest {
     @Test
     void mergeSortedEmployeeListsReturnsCombinedSortedList() {
         List<Employee> left = List.of(
-                new Employee("Alice", "Smith"),
-                new Employee("Charlie", "Brown")
+                new Employee("Alice", "Smith", Department.HUMAN_RESOURCES, ManagerType.ASSISTANT_MANAGER),
+                new Employee("Charlie", "Brown", Department.FINANCE, ManagerType.SENIOR_MANAGER)
         );
 
         List<Employee> right = List.of(
-                new Employee("Bob", "Jones"),
-                new Employee("David", "Wilson")
+                new Employee("Bob", "Jones", Department.IT, ManagerType.TEAM_LEAD),
+                new Employee("David", "Wilson", Department.OPERATIONS, ManagerType.BRANCH_MANAGER)
         );
 
         List<Employee> mergedEmployees = sorter.merge(left, right);
@@ -70,7 +71,7 @@ public class EmployeeMergeSortTest {
 
     @Test
     void sortSingleEmployeeReturnsSameEmployee() {
-        Employee employee = new Employee("Alice", "Smith");
+        Employee employee = new Employee("Alice", "Smith", Department.HUMAN_RESOURCES, ManagerType.ASSISTANT_MANAGER);
         List<Employee> employeeList = List.of(employee);
 
         List<Employee> sortedEmployees = sorter.sort(employeeList);
@@ -81,9 +82,9 @@ public class EmployeeMergeSortTest {
     @Test
     void sortAlreadySortedEmployeesReturnsSameOrder() {
         List<Employee> employees = List.of(
-                new Employee("Alice", "Smith"),
-                new Employee("Bob", "Jones"),
-                new Employee("Charlie", "Brown")
+                new Employee("Alice", "Smith", Department.HUMAN_RESOURCES, ManagerType.ASSISTANT_MANAGER),
+                new Employee("Bob", "Jones", Department.IT, ManagerType.TEAM_LEAD),
+                new Employee("Charlie", "Brown", Department.FINANCE, ManagerType.SENIOR_MANAGER)
         );
 
         List<Employee> sortedEmployees = sorter.sort(employees);

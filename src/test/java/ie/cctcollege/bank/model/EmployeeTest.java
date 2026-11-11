@@ -11,7 +11,7 @@ public class EmployeeTest {
 
     @BeforeEach
     void setUp() {
-        employee = new Employee("John", "Smith");
+        employee = new Employee("John", "Smith", Department.FINANCE, ManagerType.EMPLOYEE);
     }
 
     @Test
@@ -27,5 +27,29 @@ public class EmployeeTest {
     @Test
     void getFullNameCombinesFirstNameAndLastName() {
         assertEquals("John Smith", employee.getFullName());
+    }
+
+    @Test
+    void createEmployeeStoresTheManagerType() {
+        Employee employee = new Employee(
+                "John",
+                "Smith",
+                Department.FINANCE,
+                ManagerType.SENIOR_MANAGER
+        );
+
+        assertEquals(ManagerType.SENIOR_MANAGER, employee.getManagerType());
+    }
+
+    @Test
+    void createEmployeeStoresTheDepartment() {
+        Employee employee = new Employee(
+                "John",
+                "Smith",
+                Department.FINANCE,
+                ManagerType.SENIOR_MANAGER
+        );
+
+        assertEquals(Department.FINANCE, employee.getDepartment());
     }
 }
