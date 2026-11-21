@@ -1,6 +1,9 @@
 package ie.cctcollege.bank.model;
 
+import java.util.UUID;
+
 public class Employee {
+    private final UUID id;
     private final String firstName;
     private final String lastName;
 
@@ -13,10 +16,15 @@ public class Employee {
         validateDepartment(department);
         validateManagerType(managerType);
 
+        this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
         this.managerType = managerType;
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public String getFirstName() {

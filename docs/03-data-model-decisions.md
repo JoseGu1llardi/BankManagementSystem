@@ -83,3 +83,16 @@ The constructor throws `IllegalArgumentException` whenever an invalid value is p
 This decision ensures that an Employee object cannot be created with invalid required attributes, regardless of which class creates it.
 
 The `EmployeeRegistrationService` is responsible for registration and in-memory storage. It also rejects null Employee references.
+
+
+## 7. Employee Identifier
+
+I decided to assign a unique UUID to each employee when the Employee object is created.
+
+I generate the identifier using UUID.randomUUID() and store it in a final field.
+
+I expose the identifier through the getId() method.
+
+I chose UUID instead of an incremental numeric ID because it allows each employee to receive an identifier independently, without requiring a central counter.
+
+This also allows me to distinguish employees who have the same first and last names.

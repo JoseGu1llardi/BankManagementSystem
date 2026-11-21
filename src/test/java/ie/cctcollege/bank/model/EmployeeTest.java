@@ -17,6 +17,31 @@ public class EmployeeTest {
     }
 
     @Test
+    void createEmployeeGeneratesUniqueId() {
+        Employee firstEmployee = new Employee(
+                "John",
+                "Smith",
+                Department.FINANCE,
+                ManagerType.EMPLOYEE
+        );
+
+        Employee secondEmployee = new Employee(
+                "John",
+                "Smith",
+                Department.FINANCE,
+                ManagerType.EMPLOYEE
+        );
+
+        assertNotNull(firstEmployee.getId());
+        assertNotNull(secondEmployee.getId());
+
+        assertNotEquals(
+                firstEmployee.getId(),
+                secondEmployee.getId()
+        );
+    }
+
+    @Test
     void createEmployeeStoresTheFirstName() {
         assertEquals("John", employee.getFirstName());
     }
