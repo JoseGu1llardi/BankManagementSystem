@@ -96,3 +96,17 @@ I expose the identifier through the getId() method.
 I chose UUID instead of an incremental numeric ID because it allows each employee to receive an identifier independently, without requiring a central counter.
 
 This also allows me to distinguish employees who have the same first and last names.
+
+
+## 8. Employee Registration and Duplicate Prevention
+
+I decided to prevent the registration of the same Employee object more than once.
+
+I use the employee UUID to check whether an employee is already registered.
+
+If the UUID already exists in the in-memory collection, the service throws an IllegalStateException.
+
+I allow employees with the same first and last names because names do not uniquely identify a person.
+
+I keep this validation inside EmployeeRegistrationService because it is responsible for managing employee registration.
+

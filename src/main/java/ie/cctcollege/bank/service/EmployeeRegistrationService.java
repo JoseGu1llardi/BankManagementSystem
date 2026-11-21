@@ -14,10 +14,20 @@ public class EmployeeRegistrationService {
             throw new IllegalArgumentException("The employee cannot be null");
         }
 
+        validateEmployeeIsNotRegistered(employee);
+
         employees.add(employee);
     }
 
     public List<Employee> getAllEmployees() {
         return Collections.unmodifiableList(employees);
+    }
+
+    private void validateEmployeeIsNotRegistered(Employee employee) {
+        boolean alreadyRegistered = employees.stream()
+                .anyMatch(existing -> existing.getId().equals(employee.getId()));
+
+        if (alreadyRegistered) throw new IllegalStateException("Employee is already registered.");
+
     }
 }

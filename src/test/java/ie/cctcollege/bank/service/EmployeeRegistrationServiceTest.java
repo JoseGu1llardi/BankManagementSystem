@@ -57,4 +57,44 @@ public class EmployeeRegistrationServiceTest {
 
         assertTrue(service.getAllEmployees().isEmpty());
     }
+
+    @Test
+    void registerSameEmployeeTwiceThrowsException() {
+        Employee employee = new Employee(
+                "Alice",
+                "Smith",
+                Department.HUMAN_RESOURCES,
+                ManagerType.BRANCH_MANAGER
+        );
+
+        service.registerEmployee(employee);
+
+        assertThrows(IllegalStateException.class,
+                () -> service.registerEmployee(employee));
+
+        assertEquals(1, service.getAllEmployees().size());
+    }
+
+    @Test
+    void registerEmployeesWithSameNameButDifferentIds() {
+        Employee firstEmployee = new Employee(
+                "Jose",
+                "Guillard",
+                Department.IT,
+                ManagerType.TEAM_LEAD
+        );
+
+        Employee secondEmployee = new Employee(
+                "Jose",
+                "Guillard",
+                Department.IT,
+                ManagerType.TEAM_LEAD
+        );
+
+        service.registerEmployee(firstEmployee);
+        service.registerEmployee(secondEmployee);
+
+        assertEquals(2, service.getAllEmployees().size());
+        assertNotEquals(firstEmployee.getId(), secondEmployee.getId());
+    }
 }
