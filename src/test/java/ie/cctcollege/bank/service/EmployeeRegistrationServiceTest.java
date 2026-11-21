@@ -1,4 +1,60 @@
 package ie.cctcollege.bank.service;
 
+import ie.cctcollege.bank.model.Department;
+import ie.cctcollege.bank.model.Employee;
+import ie.cctcollege.bank.model.ManagerType;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class EmployeeRegistrationServiceTest {
+    private EmployeeRegistrationService service;
+
+    @BeforeEach
+    void setup() {
+         service = new EmployeeRegistrationService();
+    }
+
+    @Test
+    void registerEmployeeWithValidDataStoresEmployee() {
+        Employee employee = new Employee(
+                "Jose",
+                "Guillard",
+                Department.IT,
+                ManagerType.TEAM_LEAD
+        );
+
+        service.registerEmployee(employee);
+
+        assertEquals(1, service.getAllEmployees().size());
+        assertSame(employee, service.getAllEmployees().getFirst());
+    }
+
+    @Test
+    void getAllEmployeesReturnsUnmodifiableList() {
+        Employee employee = new Employee(
+                "Alice",
+                "Smith",
+                Department.HUMAN_RESOURCES,
+                ManagerType.BRANCH_MANAGER
+        );
+
+        service.registerEmployee(employee);
+
+        List<Employee> result = service.getAllEmployees();
+
+        assertThrows(UnsupportedOperationException.class,
+                () -> result.add(employee));
+    }
+
+    @Test
+    void registerEmployeeWithNullThrowsException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> service.registerEmployee(null));
+
+        assertTrue(service.getAllEmployees().isEmpty());
+    }
 }
