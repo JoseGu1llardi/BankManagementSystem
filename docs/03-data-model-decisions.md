@@ -64,3 +64,22 @@ The application uses a single constructor that requires all four attributes.
 This prevents the creation of employee objects with missing manager type or department information.
 
 The attributes are immutable after the Employee object is created.
+
+## 6. Employee Data Integrity
+
+I decided to enforce employee data validation inside the `Employee` constructor.
+
+An Employee must have:
+
+- A non-null and non-blank first name.
+- A non-null and non-blank last name.
+- A non-null Department.
+- A non-null ManagerType.
+
+I implemented private validation methods to keep these rules inside the model.
+
+The constructor throws `IllegalArgumentException` whenever an invalid value is provided.
+
+This decision ensures that an Employee object cannot be created with invalid required attributes, regardless of which class creates it.
+
+The `EmployeeRegistrationService` is responsible for registration and in-memory storage. It also rejects null Employee references.

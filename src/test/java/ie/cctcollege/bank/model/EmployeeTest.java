@@ -3,7 +3,9 @@ package ie.cctcollege.bank.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EmployeeTest {
 
@@ -20,13 +22,66 @@ public class EmployeeTest {
     }
 
     @Test
+    void createEmployeeWithBlankFirstNameThrowsException() {
+
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Employee employee = new Employee(
+                            "   ",
+                            "Singer",
+                            Department.OPERATIONS,
+                            ManagerType.EMPLOYEE
+                    );
+                });
+    }
+
+    @Test
     void createEmployeeStoresTheLastName() {
         assertEquals("Smith", employee.getLastName());
     }
 
     @Test
+    void createEmployeeWithBlankLastNameThrowsException() {
+
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Employee employee = new Employee(
+                            "Bob",
+                            "   ",
+                            Department.FINANCE,
+                            ManagerType.ASSISTANT_MANAGER
+                    );
+                });
+    }
+
+    @Test
     void getFullNameCombinesFirstNameAndLastName() {
         assertEquals("John Smith", employee.getFullName());
+    }
+
+    @Test
+    void createEmployeeStoresTheDepartment() {
+        Employee employee = new Employee(
+                "John",
+                "Smith",
+                Department.FINANCE,
+                ManagerType.SENIOR_MANAGER
+        );
+
+        assertEquals(Department.FINANCE, employee.getDepartment());
+    }
+
+    @Test
+    void createEmployeeWithNullDepartmentThrowsException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Employee employee = new Employee(
+                            "Bob",
+                            "Singer",
+                            null,
+                            ManagerType.ASSISTANT_MANAGER
+                    );
+                });
     }
 
     @Test
@@ -42,14 +97,16 @@ public class EmployeeTest {
     }
 
     @Test
-    void createEmployeeStoresTheDepartment() {
-        Employee employee = new Employee(
-                "John",
-                "Smith",
-                Department.FINANCE,
-                ManagerType.SENIOR_MANAGER
-        );
-
-        assertEquals(Department.FINANCE, employee.getDepartment());
+    void createEmployeeWithNullManagerTypeThrowsException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Employee employee = new Employee(
+                            "Bob",
+                            "Singer",
+                            Department.FINANCE,
+                            null
+                    );
+                });
     }
+
 }
