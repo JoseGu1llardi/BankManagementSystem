@@ -28,6 +28,5 @@ public class EmployeeRegistrationService {
                 .anyMatch(existing -> existing.getId().equals(employee.getId()));
 
         if (alreadyRegistered) throw new IllegalStateException("Employee is already registered.");
-
     }
 }
