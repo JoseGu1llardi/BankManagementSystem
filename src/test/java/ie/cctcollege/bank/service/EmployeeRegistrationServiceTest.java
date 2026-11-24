@@ -97,4 +97,21 @@ public class EmployeeRegistrationServiceTest {
         assertEquals(2, service.getAllEmployees().size());
         assertNotEquals(firstEmployee.getId(), secondEmployee.getId());
     }
+
+    @Test
+    void shouldInitializeServiceWithExistingEmployees() {
+        Employee employee = new Employee(
+                "John",
+                "Smith",
+                Department.FINANCE,
+                ManagerType.SENIOR_MANAGER
+        );
+
+        EmployeeRegistrationService service =
+                new EmployeeRegistrationService(List.of(employee));
+
+        assertEquals(1, service.getAllEmployees().size());
+        assertEquals("John Smith",
+                service.getAllEmployees().getFirst().getFullName());
+    }
 }

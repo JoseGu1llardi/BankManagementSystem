@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EmployeeMergeSort {
 
-    public List<Employee> sort(List<Employee> employees) {
+    public static List<Employee> sort(List<Employee> employees) {
         // base-case: a list with one or zero element is already sorted
         if (employees.size() <= 1) {
             return employees;
@@ -26,7 +26,7 @@ public class EmployeeMergeSort {
         return merge(sortedLeft, sortedRight);
     }
 
-    public List<Employee> merge(List<Employee> left, List<Employee> right) {
+    public static List<Employee> merge(List<Employee> left, List<Employee> right) {
         List<Employee> merged = new ArrayList<>();
 
         int leftIndex = 0;

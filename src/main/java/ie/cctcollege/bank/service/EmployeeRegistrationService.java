@@ -7,7 +7,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class EmployeeRegistrationService {
-    private final List<Employee> employees = new ArrayList<>();
+    private final List<Employee> employees;
+
+    public EmployeeRegistrationService() {
+        this.employees = new ArrayList<>();
+    }
+
+    public EmployeeRegistrationService(List<Employee> initialEmployees) {
+        if (initialEmployees == null) {
+            throw new IllegalArgumentException("Initial employees cannot be null.");
+        }
+        this.employees = new ArrayList<>(initialEmployees);
+    }
 
     public void registerEmployee(Employee employee) {
         if (employee == null) {
