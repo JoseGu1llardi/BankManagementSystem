@@ -8,7 +8,9 @@ public enum Department {
     IT("IT"),
     OPERATIONS("Operations"),
     CUSTOMER_SERVICE("Customer Service"),
-    HUMAN_RESOURCES("Human Resource");
+    HUMAN_RESOURCES("Human Resource"),
+    SALES("Sales"),
+    MARKETING("Marketing");
 
     private final String description;
 
