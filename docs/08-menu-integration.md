@@ -19,3 +19,13 @@ I connected the following features to the menu:
 I rebuild the binary tree whenever the user selects the tree option. This ensures that newly registered employees are included.
 
 I tested the application through the menu and ran the automated test suite. All 50 tests passed with no failures or errors.
+
+### Employee Registration Feedback
+
+I updated the employee registration option in the main menu to provide clear feedback to the user.
+
+Before registration, I store the current number of employees. After a successful registration, I display the newly added employee's name, manager type and department.
+
+I also added exception handling for invalid input. If the department or manager type is invalid, the application displays an error message instead of terminating. The user can continue using the menu.
+
+I tested the registration flow with valid and invalid input. All 50 automated tests passed.

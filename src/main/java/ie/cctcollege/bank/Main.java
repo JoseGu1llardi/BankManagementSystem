@@ -111,9 +111,27 @@ public class Main {
                     break;
 
                 case REGISTER_EMPLOYEE:
+                    int previousCount = service.getAllEmployees().size();
 
-                    controller.registerEmployee();
-                    System.out.println("Employee registerd successfully.");
+                    try {
+                        controller.registerEmployee();
+
+                        System.out.println("\nEmployee registered successfully.");
+
+                        List<Employee> employees = service.getAllEmployees();
+
+                        for (int i = previousCount; i < employees.size(); i++) {
+                            Employee employee = employees.get(i);
+
+                            System.out.println("Name: " + employee.getFullName());
+                            System.out.println("Manager Type: " + employee.getManagerType().getDescription());
+                            System.out.println("Department: " + employee.getDepartment().getDescription());
+                        }
+
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Registration failed: " + e.getMessage());
+                    }
+
                     break;
 
                 case DISPLAY_BINARY_TREE:
